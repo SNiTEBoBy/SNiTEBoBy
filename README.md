@@ -71,7 +71,6 @@ Built on Extra Options framework. \~Used by NFS modding community for modern vis
 ### 📫 Contact / Elsewhere
 
 - **GitHub**: [@SNiTEBoBy](https://github.com/SNiTEBoBy)
-- **X / Twitter**: (add if you have one, e.g. https://x.com/yourhandle)
 - **Discord / Modding communities**: (add NFS-related handles if relevant)
 - Open to collaboration on graphics/performance mods or legacy code revival.
 
