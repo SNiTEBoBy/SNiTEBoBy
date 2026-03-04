@@ -1,0 +1,71 @@
+name: Profile Automation - Snake, Stats, Activity
+
+on:
+  schedule:
+    - cron: '0 3 * * *'          # Daily at 03:00 UTC (\~4-5 AM depending on TZ)
+  workflow_dispatch:             # Manual trigger for testing
+  push:
+    branches: [ main ]           # Regenerate on manual pushes too (optional)
+
+permissions:
+  contents: write                # Required to push generated files
+
+jobs:
+  generate-snake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Generate Snake animations
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-snake.svg
+            dist/github-snake-dark.svg?palette=github-dark
+
+      - name: Push snake files to output branch
+        uses: peaceiris/actions-gh-pages@v4  # Reliable for orphan branch pushes
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: output
+          force_orphan: true                     # Clean branch each time (recommended)
+          commit_message: "chore: update snake animation [skip ci]"
+
+  keep-active:  # Optional - only enable if your real commits are <1/week
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'         # Only on cron, not manual/push
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Create dummy commit to keep graph alive
+        run: |
+          echo "# Last auto-activity: $(date -u)" >> AUTO_ACTIVITY.md
+          git config user.name "Profile Bot"
+          git config user.email "actions@github.com"
+          git add AUTO_ACTIVITY.md
+          git commit -m "chore: daily activity bump [skip ci]" || echo "No changes to commit"
+          git push
+
+  # Optional: Self-hosted stats SVG generation (uncomment if avoiding vercel public instance)
+  # generate-stats:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Generate stats card
+  #       uses: readme-tools/github-readme-stats-action@v1  # or soulteary/github-readme-stats-action
+  #       with:
+  #         card: stats
+  #         options: username=${{ github.repository_owner }}&show_icons=true&theme=radical&hide_border=true&include_all_commits=true&count_private=true
+  #         path: profile/stats.svg
+  #     - name: Commit stats
+  #       run: |
+  #         git config user.name "GitHub Actions"
+  #         git config user.email "actions@github.com"
+  #         git add profile/*.svg || true
+  #         git commit -m "chore: update stats card [skip ci]" || echo "No changes"
+  #         git push
