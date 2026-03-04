@@ -32,20 +32,26 @@
 
 ### 📊 GitHub Stats & Activity
 
+<!-- Snake - points to 'output' branch -->
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/${{ github.repository_owner }}/output/main/github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/${{ github.repository_owner }}/output/main/github-snake.svg" />
+    <img alt="github contribution snake animation" src="https://raw.githubusercontent.com/${{ github.repository_owner }}/output/main/github-snake.svg" />
+  </picture>
+</div>
+
+> *Contribution snake auto-generated daily via GitHub Actions (Platane/snk)*
+
+<!-- Stats - using public vercel instance (reliable, no workflow needed) -->
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=SNiTEBoBy&show_icons=true&theme=radical&hide_border=true&include_all_commits=true&count_private=true" alt="GitHub Stats"/>
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=SNiTEBoBy&theme=radical&hide_border=true" alt="Streak Stats"/>
 </div>
 
-<div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/SNiTEBoBy/SNiTEBoBy/output/github-snake-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/SNiTEBoBy/SNiTEBoBy/output/github-snake.svg" />
-    <img alt="github contribution snake animation" src="https://raw.githubusercontent.com/SNiTEBoBy/SNiTEBoBy/output/github-snake.svg" />
-  </picture>
-</div>
 
 > *Contribution graph snake generated automatically via GitHub Action*
+
 
 ### 🚀 Highlighted Project
 
