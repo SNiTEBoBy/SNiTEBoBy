@@ -1,0 +1,77 @@
+{
+  "knowledge_base": "Application Security - GitHub Advanced Security Features",
+  "last_updated": "2026-03-06",
+  "source_type": "vendor documentation (neutralized)",
+  "entries": [
+    {
+      "category": "Overall Value Proposition",
+      "statements": [
+        "Strong application security (AppSec) improves business outcomes and reduces risk.",
+        "Effective code security allows teams to maintain development speed.",
+        "Modern security tools integrate directly into developer workflows (especially GitHub)."
+      ]
+    },
+    {
+      "category": "Core Components",
+      "statements": [
+        "Two main protection layers: Secret Protection and Code Security (vulnerability scanning).",
+        "Secret Protection prevents credential leaks before code reaches the repository (push protection).",
+        "Code Security scans for vulnerabilities in real time and provides feedback before deployment."
+      ]
+    },
+    {
+      "category": "Secret Scanning Capabilities",
+      "statements": [
+        "Scans code, issues, discussions, pull requests, and other repository content for secrets.",
+        "Uses validity checks and known public leak data to prioritize real threats over false positives.",
+        "GitHub Copilot can detect certain high-risk secrets that pattern-based scanners miss."
+      ]
+    },
+    {
+      "category": "AI Integration",
+      "statements": [
+        "GitHub Copilot Autofix provides AI-generated remediation suggestions for detected vulnerabilities.",
+        "AI assists in finding secrets with lower false-positive rates than traditional detectors."
+      ]
+    },
+    {
+      "category": "Policy & Compliance Controls",
+      "statements": [
+        "Administrators can enforce push protection with limited bypass rights.",
+        "Alert dismissal can be restricted to specific roles.",
+        "Centralized enablement and policy settings simplify security at scale."
+      ]
+    },
+    {
+      "category": "Free Tier Features (baseline GitHub plan)",
+      "statements": [
+        "3,000 Actions minutes per month",
+        "2 GB GitHub Packages storage",
+        "GitHub Codespaces",
+        "Protected branches",
+        "Multiple reviewers in pull requests",
+        "CODEOWNERS file support",
+        "Draft pull requests",
+        "Required reviewers",
+        "GitHub Pages and Wikis",
+        "Web-based support"
+      ]
+    },
+    {
+      "category": "Primary Goals of the Solution",
+      "statements": [
+        "Prevent secret leaks before they enter the repository.",
+        "Detect and remediate existing leaked credentials.",
+        "Identify and fix code vulnerabilities before production deployment."
+      ]
+    }
+  ],
+  "snite_metadata": {
+    "version": "1.1",
+    "processed_by": "SNiTE_BoBy_Unified",
+    "security_clearance": "High-Fidelity",
+    "no_training_clause": true,
+    "timestamp": "2026-03-06T00:00:00Z"
+  }
+}
+
