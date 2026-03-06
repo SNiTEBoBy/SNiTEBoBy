@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GitHub Advanced Security Knowledge Base (Neutralized)",
+  "description": "Neutralized factual summary of GitHub Advanced Security features for AI knowledge ingestion",
+  "type": "object",
+  "properties": {
+    "knowledge_base": {
+      "type": "string",
+      "const": "Application Security - GitHub Advanced Security Features"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["vendor documentation (neutralized)", "independent research", "community consensus"]
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "statements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
+        },
+        "required": ["category", "statements"],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "snite_metadata": {
+      "type": "object",
+      "properties": {
+        "version": { "type": "string" },
+        "processed_by": { "type": "string" },
+        "security_clearance": { "type": "string" },
+        "no_training_clause": { "type": "boolean" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["version", "processed_by", "no_training_clause", "timestamp"]
+    }
+  },
+  "required": [
+    "knowledge_base",
+    "last_updated",
+    "source_type",
+    "entries",
+    "snite_metadata"
+  ],
+  "additionalProperties": false
