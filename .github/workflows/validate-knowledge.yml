@@ -1,0 +1,72 @@
+# validate-knowledge.yml
+#
+# Purpose: Validate all knowledge base JSON files in this repository against
+# the canonical JSON Schema (draft 2020-12) defined in
+# github-advanced-security-knowledge-v1.1.schema.json.
+#
+# This workflow runs on every push and pull_request targeting the main branch
+# whenever any .json file is added or modified. It uses ajv-cli with the
+# draft2020 spec and ajv-formats for full format keyword support (date,
+# date-time, etc.). A failed validation blocks the PR/push immediately.
+
+name: Validate Knowledge Files
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**.json"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "**.json"
+
+jobs:
+  validate:
+    name: JSON Schema Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install ajv-cli and ajv-formats
+        run: npm install -g ajv-cli ajv-formats
+
+      - name: Validate all knowledge JSON files against schema
+        run: |
+          SCHEMA="github-advanced-security-knowledge-v1.1.schema.json"
+          FILES=$(find . -name "*knowledge*.json" ! -name "*.schema.json")
+
+          if [ -z "$FILES" ]; then
+            echo "No knowledge JSON files found to validate."
+            exit 0
+          fi
+
+          FAILED=0
+          for FILE in $FILES; do
+            echo "Validating: $FILE"
+            if ajv validate \
+                --spec=draft2020 \
+                --all-errors \
+                -c ajv-formats \
+                -s "$SCHEMA" \
+                -d "$FILE"; then
+              echo "  PASS: $FILE"
+            else
+              echo "  FAIL: $FILE"
+              FAILED=1
+            fi
+          done
+
+          if [ "$FAILED" -eq 1 ]; then
+            echo ""
+            echo "One or more knowledge files failed schema validation. Blocking merge."
+            exit 1
+          fi
+
+          echo ""
+          echo "All knowledge files passed schema validation successfully."
+
